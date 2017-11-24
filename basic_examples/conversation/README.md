@@ -5,36 +5,43 @@ The conversation service integrates natural language understanding, to determine
 dialog tools which allow for a natural conversation flow between your application and your users.
 
 ## Getting Started
-Before you can use the service through the node on node-RED you will need to create your conversation. Follow the
-[Tutorial](http://www.ibm.com/watson/developercloud/doc/conversation/tutorial_basic.shtml) to guide you through the process of
+Before you can use the service through the node on Node-RED you will need to create your conversation. Follow the
+[tutorial](https://console.bluemix.net/docs/services/conversation/getting-started.html#gettingstarted) to guide you through the process of
 launching the conversation service tooling, creating a workspace, registering intents and entities and creating a dialog.
 The tooling is the only way in which dialogs, intents and entities can be registered with the service.
 
 ## Conversation Flow construction
-In this exercise, we will show how create a Conversation Bot Flow. It will consist of two sub-components. The first will
-consist of the HTML template, with javascripts, that will be the front end of your Bot. The second will be an REST API that will
-encaspulate the Conversation service.
+This exercise will show you how create a Conversation Bot Flow. It will consist of two sub-components:
 
-### Connecting to an existing Conversation service on Bluemix
-To use the conversation node you will have already created an instance of the Service in Bluemix and used the service tooling to
-register intents, entities and dialogs.
-You will need the workspace id. Obtain this from the service tooling. Select details for your workspace,
-![Conversation-Workspace-Tile](images/conversation_lab_workspace_tile.png)
+1 - HTML template with javascript that will be the front end of your Bot  
+2 - REST API that will encaspulate the Conversation service
 
-by clicking on
-![Conversation-Workspace-Options](images/conversation_lab_workspace_options.png)
+### Connecting to an existing Conversation service on IBM Cloud
+To use the conversation node, you need to have already created an instance of the service in IBM Cloud and used the service tooling to
+register intents, entities and dialogs. You will need the workspace ID.
 
-which will reveal your workspace id.
+- Launch the Watson Conversation tool from IBM Cloud
+
+- From the workspace, choose your conversation (either the sample application or one you have created)  
+
+- Select 'actions' for the conversation
+
+![Conversation-Workspace-Options](images/conversation_lab_workspace_actions.png)
+
+- Your workspace id will be revealed. Copy the ID
+
 ![Conversation-Workspace-ID](images/conversation_lab_workspace_id.png)
 
 ### The HTML template
-Build a flow comprising of HTTP In, Template, and HTTP Response nodes
+- Build a flow comprising of HTTP In, Template, and HTTP Response nodes
+
 ![Conversation-template-subflow](images/conversation_lab_template_subflow.png)
 
-Configure the HTTP In node. This will be your Bot's home page.
+- Configure the HTTP In node. This will be your Bot's home page
+
 ![Conversation-template-httpin](images/conversation_lab_template_httpin.png)
 
-Configure the Template node with the following code.
+- Configure the Template node with the following code.
 ```
 <html>
   <head>
@@ -147,10 +154,10 @@ This sets up the homepage of your BOT as a single page application. It uses AJAX
 For the REST subflow build a flow comprising of HTTP In, a function, conversation, as second function, and HTTP Response nodes
 ![Conversation-rest-subflow](images/conversation_lab_rest_subflow.png)
 
-Configure the HTTP In node as a POST API.
+- Configure the HTTP In node as a POST API.
 ![Conversation-rest-httpim](images/conversation_lab_rest_httpin.png)
 
-Configure the first function to pull out the user text and any conversation context information, with the following code.
+- Configure the first function to pull out the user text and any conversation context information, with the following code.
 ```
 // stash away incoming data
 msg.mydata = {};
